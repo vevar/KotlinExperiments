@@ -1,8 +1,8 @@
 object Versions {
 
     object Kotlin {
-        const val serializationRuntime = "0.20.0"
         const val kotlin = "1.3.70"
+        const val serializationRuntime = "0.20.0"
         const val serialization = kotlin
         const val ktor = "1.3.2"
 

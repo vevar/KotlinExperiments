@@ -1,10 +1,17 @@
 object Deps {
 
     object Multiplatform {
+
+        val kotlinStdlib = MultiplatformDeps(
+            jvm = Jvm.kotlinStdlib,
+            common = Common.kotlinStdlib,
+            js = Js.kotlinStdlib
+        )
+
         val coroutines = MultiplatformDeps(
-            jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}",
-            common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.Kotlin.coroutines}",
-            js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.Kotlin.coroutines}"
+            jvm = Jvm.coroutines,
+            common = Common.coroutines,
+            js = Js.coroutines
         )
 
         val ktorClient = MultiplatformDeps(
@@ -21,12 +28,20 @@ object Deps {
 
         val kotlinSerialization =
             MultiplatformDeps(common = "org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.serialization}")
-        val kotlinSerializationRuntime =
-            MultiplatformDeps(js = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.Kotlin.serializationRuntime}")
 
+        val kotlinSerializationRuntime =
+            MultiplatformDeps(
+                jvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.Kotlin.serializationRuntime}",
+                common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.Kotlin.serializationRuntime}",
+                js = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.Kotlin.serializationRuntime}"
+            )
     }
 
     object Js {
+        val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.Kotlin.kotlin}"
+
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.Kotlin.coroutines}"
+
         object Frontend {
             const val kotlinReact = "org.jetbrains:kotlin-react:${Versions.Js.Frontend.kotlinReact}"
             const val kotlinReactDom = "org.jetbrains:kotlin-react-dom:${Versions.Js.Frontend.kotlinReactDom}"
@@ -40,5 +55,20 @@ object Deps {
 
             }
         }
+    }
+
+    object Jvm {
+        val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.kotlin}"
+
+
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}"
+
+    }
+
+    object Common {
+        val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.Kotlin.kotlin}"
+
+        val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.Kotlin.coroutines}"
+
     }
 }

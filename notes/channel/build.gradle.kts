@@ -10,7 +10,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation(Deps.Multiplatform.coroutines.jvm)
+    implementation(Deps.Jvm.coroutines)
 }
 
 
