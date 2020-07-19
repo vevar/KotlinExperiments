@@ -32,6 +32,6 @@ kotlin {
 }
 dependencies {
     implementation(kotlin("stdlib-js"))
-    implementation(project(path = Modules.App.FullStackJs.domain))
-    implementation(project(path = Modules.App.FullStackJs.feature))
+    implementation("com.app.fullstack.js.domain:domain-browser:0.0.1")
+//    implementation(project(path = Modules.App.FullStackJs.feature))
 }

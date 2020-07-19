@@ -18,6 +18,10 @@ object Deps {
             js = "io.ktor:ktor-client-js:${Versions.Kotlin.ktor}"
         )
 
+        val ktorServerCore = MultiplatformDeps(
+            js = Js.Server.ktorServerCore
+        )
+
         val ktorSerialization = MultiplatformDeps(
             js = "io.ktor:ktor-client-serialization-js:${Versions.Kotlin.ktor}"
         )
@@ -39,6 +43,11 @@ object Deps {
 
     object Js {
         val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.Kotlin.kotlin}"
+
+
+        object Server {
+            const val ktorServerCore = "io.ktor:ktor-server-core:${Versions.Kotlin.ktor}"
+        }
 
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.Kotlin.coroutines}"
 

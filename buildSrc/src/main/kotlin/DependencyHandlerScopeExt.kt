@@ -12,8 +12,22 @@ fun MppDepsSettings.mppModule(name: String) {
         if (ios) "iosX64MainImplementation"(dependencies.project(path = name))
         if (ios) "iosArm64MainImplementation"(dependencies.project(path = name))
         if (browser) "browserMainImplementation"(dependencies.project(path = name))
-        if (nodeJs) "nodeJsMainImplementation"(dependencies.project(path = name))
+        if (nodeJs) "nodejsMainImplementation"(dependencies.project(path = name))
         if (js) "jsMainImplementation"(dependencies.project(path = name))
+    }
+}
+
+fun MppDepsSettings.mppLibrary(dependency: MultiplatformDeps) {
+    with(dependencyScope) {
+        if (nodeJs) dependency.nodeJs?.let { "nodejsMainImplementation"(it) }
+        if (browser) dependency.browser?.let { "browserMainImplementation"(it) }
+        if (js) dependency.js?.let { "jsMainImplementation"(it) }
+        if (android) dependency.android?.let { "androidMainImplementation"(it) }
+        if (common) dependency.common?.let { "commonMainApi"(it) }
+        if (ios) dependency.ios?.let {
+            "iosX64MainImplementation"(it)
+            "iosArm64MainImplementation"(it)
+        }
     }
 }
 
@@ -42,19 +56,7 @@ fun DependencyHandlerScope.mppSetup(block: MppDepsSettings.() -> Unit) {
 }
 
 
-fun MppDepsSettings.mppLibrary(dependency: MultiplatformDeps) {
-    with(dependencyScope) {
-        if (nodeJs) dependency.nodeJs?.let { "nodeJsMainImplementation"(it) }
-        if (browser) dependency.browser?.let { "browserMainImplementation"(it) }
-        if (js) dependency.js?.let { "jsMainImplementation"(it) }
-        if (android) dependency.android?.let { "androidMainImplementation"(it) }
-        if (common) dependency.common?.let { "commonMainApi"(it) }
-        if (ios) dependency.ios?.let {
-            "iosX64MainImplementation"(it)
-            "iosArm64MainImplementation"(it)
-        }
-    }
-}
+
 
 fun DependencyHandlerScope.androidLibrary(name: String) {
     "androidMainImplementation"(name)
